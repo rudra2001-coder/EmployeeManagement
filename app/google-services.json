@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "337363480771",
+    "project_id": "employeemanagementa",
+    "storage_bucket": "employeemanagementa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337363480771:android:efe8398069b93a8625b276",
+        "android_client_info": {
+          "package_name": "com.rudra.employeemanagement"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkZ2siS5mn6-sBqeRAPdn_Ms1XfMJwrnc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
