@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.googleServices)
+    alias(libs.plugins.firebaseCrashlytics)
 }
 
 android {
@@ -77,6 +79,11 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.firebase.functions)
     implementation(libs.firebase.messaging)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.play.services.auth)
+
+    // Coil
+    implementation(libs.coil.compose)
 
     // Room (Offline)
     implementation(libs.androidx.room.runtime)

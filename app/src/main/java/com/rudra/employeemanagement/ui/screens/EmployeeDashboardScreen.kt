@@ -1,59 +1,25 @@
 package com.rudra.employeemanagement.ui.screens
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import com.rudra.employeemanagement.ui.navigation.EmployeeBottomNavItem
+import com.rudra.employeemanagement.viewmodels.EmployeeDashboardViewModel
 
 @Composable
-fun EmployeeDashboardScreen(navController: NavController) {
-    val bottomNavItems = listOf(
-        EmployeeBottomNavItem.Dashboard,
-        EmployeeBottomNavItem.Attendance,
-        EmployeeBottomNavItem.Leave,
-        EmployeeBottomNavItem.Salary,
-        EmployeeBottomNavItem.Profile
-    )
-    val bottomNavController = rememberNavController()
-
-    Scaffold(
-        bottomBar = {
-            NavigationBar {
-                val navBackStackEntry by bottomNavController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry?.destination?.route
-
-                bottomNavItems.forEach { item ->
-                    NavigationBarItem(
-                        selected = currentRoute == item.route,
-                        onClick = { bottomNavController.navigate(item.route) },
-                        icon = { Icon(item.icon, contentDescription = item.title) },
-                        label = { Text(item.title) }
-                    )
-                }
-            }
-        }
-    ) { innerPadding ->
-        NavHost(
-            navController = bottomNavController,
-            startDestination = EmployeeBottomNavItem.Dashboard.route,
-            modifier = Modifier.padding(innerPadding)
-        ) {
-            composable(EmployeeBottomNavItem.Dashboard.route) { DashboardHomeScreen(bottomNavController) }
-            composable(EmployeeBottomNavItem.Attendance.route) { MyAttendanceScreen(navController) }
-            composable(EmployeeBottomNavItem.Leave.route) { ApplyLeaveScreen(navController) }
-            composable(EmployeeBottomNavItem.Salary.route) { MySalaryScreen(navController) }
-            composable(EmployeeBottomNavItem.Profile.route) { MyProfileScreen(navController) }
+fun EmployeeDashboardScreen(
+    navController: NavController,
+    viewModel: EmployeeDashboardViewModel = hiltViewModel()
+) {
+    Scaffold {
+        Column(modifier = Modifier.padding(it).padding(16.dp)) {
+            Text("Welcome!")
+            // Add other employee features here
         }
     }
 }

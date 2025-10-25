@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Admins collection
+    match /admins/{adminId} {
+      allow read: if request.auth != null && request.auth.uid == adminId;
+      allow write: if false;
+    }
+
+    // Employees
+    match /employees/{empId} {
+      // Read: employee can read own doc OR any admin
+      allow get, list: if request.auth != null && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        || resource.data.employeeId == request.auth.token.employeeId
+      );
+
+      // Create/Update/Delete: only admins
+      allow create, update, delete: if request.auth != null && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

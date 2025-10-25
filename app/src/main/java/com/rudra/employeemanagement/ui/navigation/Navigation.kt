@@ -1,50 +1,31 @@
 package com.rudra.employeemanagement.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.rudra.employeemanagement.ui.screens.AdminLoginScreen
-import com.rudra.employeemanagement.ui.screens.EmployeeLoginScreen
-import com.rudra.employeemanagement.ui.screens.LoginScreen
+import androidx.navigation.navArgument
 import com.rudra.employeemanagement.ui.screens.AdminDashboardScreen
 import com.rudra.employeemanagement.ui.screens.EmployeeDashboardScreen
-import com.rudra.employeemanagement.ui.screens.EmployeeListScreen
-import com.rudra.employeemanagement.ui.screens.AddEmployeeScreen
-import com.rudra.employeemanagement.ui.screens.PayrollScreen
 import com.rudra.employeemanagement.ui.screens.GeneratePayrollScreen
+import com.rudra.employeemanagement.ui.screens.LoginScreen
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "login") {
-        composable("login") {
-            LoginScreen(navController = navController)
+    NavHost(navController = navController, startDestination = Screen.Login.route) {
+        composable(Screen.Login.route) { LoginScreen(navController) }
+        composable(Screen.AdminDashboard.route) { AdminDashboardScreen(navController) }
+        composable(
+            route = Screen.EmployeeDashboard.route,
+            arguments = listOf(navArgument("employeeId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val employeeId = backStackEntry.arguments?.getString("employeeId")
+            EmployeeDashboardScreen(navController, employeeId, viewModel())
         }
-        composable("admin_login") {
-            AdminLoginScreen(navController = navController)
-        }
-        composable("employee_login") {
-            EmployeeLoginScreen(navController = navController)
-        }
-        composable("admin_dashboard") {
-            AdminDashboardScreen(navController = navController)
-        }
-        composable("employee_dashboard") {
-            EmployeeDashboardScreen(navController = navController)
-        }
-        composable("employee_list") {
-            EmployeeListScreen(navController = navController)
-        }
-        composable("add_employee") {
-            AddEmployeeScreen(navController = navController)
-        }
-        composable("payroll") {
-            PayrollScreen(navController = navController)
-        }
-        composable("generate_payroll") {
-            GeneratePayrollScreen(navController = navController)
-        }
+        composable(Screen.GeneratePayroll.route) { GeneratePayrollScreen(navController) }
     }
 }
