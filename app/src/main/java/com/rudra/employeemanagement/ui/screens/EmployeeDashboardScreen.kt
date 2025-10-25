@@ -49,11 +49,11 @@ fun EmployeeDashboardScreen(navController: NavController) {
             startDestination = EmployeeBottomNavItem.Dashboard.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(EmployeeBottomNavItem.Dashboard.route) { Text("Dashboard") }
+            composable(EmployeeBottomNavItem.Dashboard.route) { DashboardHomeScreen(bottomNavController) }
             composable(EmployeeBottomNavItem.Attendance.route) { MyAttendanceScreen(navController) }
-            composable(EmployeeBottomNavItem.Leave.route) { Text("Apply Leave") }
-            composable(EmployeeBottomNavItem.Salary.route) { Text("My Salary") }
-            composable(EmployeeBottomNavItem.Profile.route) { Text("My Profile") }
+            composable(EmployeeBottomNavItem.Leave.route) { ApplyLeaveScreen(navController) }
+            composable(EmployeeBottomNavItem.Salary.route) { MySalaryScreen(navController) }
+            composable(EmployeeBottomNavItem.Profile.route) { MyProfileScreen(navController) }
         }
     }
 }
