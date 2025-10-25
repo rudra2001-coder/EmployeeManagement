@@ -51,12 +51,12 @@ fun AdminDashboardScreen(navController: NavController) {
             startDestination = BottomNavItem.Dashboard.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(BottomNavItem.Dashboard.route) { Text("Dashboard") }
+            composable(BottomNavItem.Dashboard.route) { AdminDashboardHomeScreen(bottomNavController) }
             composable(BottomNavItem.Employees.route) { EmployeeListScreen(navController) }
             composable(BottomNavItem.Attendance.route) { AttendanceScreen(navController) }
-            composable(BottomNavItem.Shifts.route) { Text("Shifts") }
+            composable(BottomNavItem.Shifts.route) { ShiftsScreen() }
             composable(BottomNavItem.Payroll.route) { PayrollScreen(navController) }
-            composable(BottomNavItem.Reports.route) { Text("Reports") }
+            composable(BottomNavItem.Reports.route) { ReportsScreen() }
             composable(BottomNavItem.Leave.route) { LeaveScreen(navController) }
         }
     }
